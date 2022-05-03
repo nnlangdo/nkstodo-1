@@ -1,0 +1,9 @@
+{% extends 'task/base.html' %}
+
+{% block content %}
+<span>Are you sure to delete the task?</span>
+<a href="{% url 'home-task' %}">Cancel</a>
+<form method="POST" class="mt-2">{% csrf_token %}
+<input type="submit" name="confirm" value="Confirm">
+</form>
+{% endblock %}

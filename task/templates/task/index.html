@@ -1,0 +1,37 @@
+{% extends 'task/base.html' %}
+{% block content %}
+<div class="text-center">
+    <form method="POST">{% csrf_token %}
+        {{form}}
+        <input type="submit" name="create_task", value="Create Task">
+    </form>
+    
+    
+</div>
+<div class="mt-5">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Serial</th>
+            <th scope="col">Tasks</th>
+            <th scope="col">Created On</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}    
+          <tr>
+            <th scope="row">{{task.id}}</th>
+            <td>{{task.title}}</td>
+            <td>{{task.created}}</td>
+            <td>
+                <a href="{% url 'update-task' task.id %}">Edit</a> 
+                <a href="{% url 'delete-task' task.id %}">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+
+{% endblock %}
